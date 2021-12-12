@@ -2,7 +2,7 @@
   "name": "wild-boys-sniper-bot",
   "version": "1.0.0",
   "description": "wild-boys-sniper-bot",
-  "main": "wildbot.js",
+  "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "snipe": "node bot.js"
