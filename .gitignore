@@ -1,46 +1,45 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-FE/dist
-FE/tmp 
-FE/out-tsc
+dist
+tmp 
+out-tsc
 # Only exists if Bazel was run
-FE/bazel-out
+bazel-out
 
 # dependencies
-FE/node_modules
-BE/node_modules
+node_modules
 
 # profiling files
 chrome-profiler-events*.json
 
 # IDEs and editors
-FE/.idea
-FE/.project
-FE/.classpath
-FE/.c9/
-FE/*.launch
-FE/.settings/
-FE/*.sublime-workspace
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
 # IDE - VSCode
-FE/.vscode/*
-FE/!.vscode/settings.json
-FE/!.vscode/tasks.json
-FE/!.vscode/launch.json
-FE/!.vscode/extensions.json
-FE/.history/*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
 # misc
-FE/.sass-cache
-FE/connect.lock
-FE/coverage
-FE/libpeerconnection.log
-FE/npm-debug.log
-FE/yarn-error.log
-FE/testem.log
-FE/typings
+.sass-cache
+connect.lock
+coverage
+libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+typings
 
 # System Files
-FE/.DS_Store
-FE/Thumbs.db
+.DS_Store
+Thumbs.db
