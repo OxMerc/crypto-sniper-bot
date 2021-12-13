@@ -15,6 +15,7 @@ import { BotService } from './services/bot.service';
 })
 export class AppComponent implements OnInit {
   socketId: any = null;
+  usersOnline = 0;
   logs: Array<any> = [];
   botRunning = false;
   botFunctionality = 1;
@@ -39,6 +40,10 @@ export class AppComponent implements OnInit {
     this.socket.fromEvent('socketId').subscribe((socketId: any) => {
       console.log('socketId', socketId);
       this.sniperForm.get('socketId')?.setValue(socketId);
+    });
+    this.socket.fromEvent('usersOnline').subscribe((usersOnline: any) => {
+      console.log('usersOnline', usersOnline);
+      this.sniperForm.get('usersOnline')?.setValue(usersOnline);
     });
     this.socket.fromEvent('logs').subscribe((log: any) => {
       console.log('logs' + log);

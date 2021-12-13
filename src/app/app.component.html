@@ -16,6 +16,10 @@
   </a>
   <span>Sniper Bot</span>
   <div class="spacer"></div>
+  <div class="d-flex">
+    <span [ngClass]="{'green-bullet': usersOnline > 0}">⚫</span> {{usersOnline}}
+  </div>
+
   <span class="mx-2">
     SESSION ID : <strong> {{ this.sniperForm.get('socketId')?.value || 'not connected'}} </strong>
   </span>
@@ -30,9 +34,11 @@
       <div class="row" [formGroup]="sniperForm">
 
         <div class="btn-group col-12 mb-3" role="group" aria-label="bot functionality">
-          <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 1}" (click)="botFunctionality = 1">Fast
+          <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 1}"
+            (click)="botFunctionality = 1">Fast
             Buy</button>
-          <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 2}" (click)="botFunctionality = 2">Fast
+          <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 2}"
+            (click)="botFunctionality = 2">Fast
             Sell</button>
           <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 3}"
             (click)="botFunctionality = 3">Sniper</button>
@@ -95,15 +101,15 @@
 
         <div class="col-12 text-center">
           <button *ngIf="!botRunning" type="submit" class="btn btn-primary w-50 " (click)="startBot()">
-            
-          <ng-container [ngSwitch]="botFunctionality">
-            <span *ngSwitchCase="1">START FAST BUY</span>
-            <span *ngSwitchCase="2">START FAST SELL</span>
-            <span *ngSwitchCase="3">START SNIPER</span>
 
-            <span *ngSwitchDefault>SELECT A FUNCTIONALITY FIRST</span>
-          </ng-container>
-          
+            <ng-container [ngSwitch]="botFunctionality">
+              <span *ngSwitchCase="1">START FAST BUY</span>
+              <span *ngSwitchCase="2">START FAST SELL</span>
+              <span *ngSwitchCase="3">START SNIPER</span>
+
+              <span *ngSwitchDefault>SELECT A FUNCTIONALITY FIRST</span>
+            </ng-container>
+
           </button>
           <button *ngIf="botRunning" type="submit" class="btn btn-secondary w-50 " (click)="terminateBot()">STOP
             BOT</button>
@@ -112,7 +118,7 @@
 
     </div>
 
-    <!-- Terminal --> 
+    <!-- Terminal -->
     <div class="col-12 col-lg-6 terminal">
       <div id="terminal-content" style="overflow: auto; height: 100%;">
         <pre *ngFor="let log of logs" [innerHtml]="log"></pre>
