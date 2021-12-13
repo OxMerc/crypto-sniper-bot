@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     recipient: new FormControl('', Validators.required),
     gasLimit: new FormControl(450000, Validators.required),
     gasPrice: new FormControl(15, Validators.required),
-    tokenToBuy: new FormControl('', Validators.required),
+    token: new FormControl('', Validators.required),
     decimals: new FormControl(18, Validators.required),
   });
 
