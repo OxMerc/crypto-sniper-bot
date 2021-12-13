@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
     privateKey: new FormControl('', Validators.required),
     amountToBuy: new FormControl('', Validators.required),
     amountOutMin: new FormControl('', Validators.required),
-    recipient: new FormControl('', Validators.required),
     gasLimit: new FormControl(450000, Validators.required),
     gasPrice: new FormControl(15, Validators.required),
     token: new FormControl('', Validators.required),
