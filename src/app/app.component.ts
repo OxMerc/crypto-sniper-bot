@@ -43,7 +43,9 @@ export class AppComponent implements OnInit {
     });
     this.socket.fromEvent('usersOnline').subscribe((usersOnline: any) => {
       console.log('usersOnline', usersOnline);
-      this.usersOnline = usersOnline;
+      setTimeout(() => {
+        this.usersOnline = usersOnline;
+      }, 0);
     });
     this.socket.fromEvent('logs').subscribe((log: any) => {
       console.log('logs' + log);
