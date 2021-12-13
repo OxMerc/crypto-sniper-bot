@@ -22,7 +22,7 @@
 
   <span class="mr-3 ml-2 border p-2 rounded">
     SESSION ID: <strong> {{ this.sniperForm.get('socketId')?.value || 'not connected'}} </strong>
-  </span> 
+  </span>
 
 </div>
 
@@ -35,13 +35,11 @@
 
         <div class="btn-group col-12 mb-3" role="group" aria-label="bot functionality">
           <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 1}"
-            (click)="botFunctionality = 1">Fast
-            Buy</button>
+            (click)="botFunctionality = 1">BUY</button>
           <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 2}"
-            (click)="botFunctionality = 2">Fast
-            Sell</button>
+            (click)="botFunctionality = 2">SELL</button>
           <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 3}"
-            (click)="botFunctionality = 3">Sniper</button>
+            (click)="botFunctionality = 3">SNIPER</button>
         </div>
 
         <div class="form-group col-12">
@@ -64,14 +62,22 @@
         </div>  -->
 
         <div class="form-group col-6">
-          <label for="amountToBuy">Amount To Buy ( BNB )</label>
+          <label for="amountToBuy" *ngIf="botFunctionality === 1 || botFunctionality === 3">
+            {{botFunctionality === 1 || botFunctionality === 3 ? 'Amount To Buy ( BNB )' : 'Amount To Sell ( Tokens )'}}
+          </label>
+
           <input type="text" class="form-control" formControlName="amountToBuy" id="amountToBuy"
-            aria-describedby="amountToBuy" placeholder="Insert amount to buy ( eg. 0.1 )" required>
+            aria-describedby="amountToBuy"
+            [placeholder]="botFunctionality === 1 || botFunctionality === 3 ? 'Insert amount To Buy ( Eg. 0.01 )' : 'Insert amount To Sell ( Eg. 1000 )'"
+            required>
         </div>
         <div class="form-group col-6">
-          <label for="amountOutMin">Amount Out Min</label>
+          <label for="amountToBuy" *ngIf="botFunctionality === 1 || botFunctionality === 3">
+            {{botFunctionality === 1 || botFunctionality === 3 ? 'Amount Out Min ( Tokens )' : 'Amount Out Min ( BnB
+            )'}}
+          </label>
           <input type="number" class="form-control" id="amountOutMin" aria-describedby="amountOutMin"
-            placeholder="Insert amount out min ( eg. 1000 )" formControlName="amountOutMin" required>
+            placeholder="Insert amount out min" formControlName="amountOutMin" required>
         </div>
 
         <div class="form-group col-4">
@@ -93,15 +99,16 @@
         </div>
 
         <div class="form-group col-12">
-          <label for="token">Token To Buy</label>
+          <label for="token">{{botFunctionality === 1 || botFunctionality === 3 ? 'Token to Buy' : 'Token to
+            Sell'}}</label>
           <!-- <label for="token">Token To Sell</label> -->
           <input type="text" class="form-control" formControlName="token" id="token" aria-describedby="token"
-            placeholder="Insert token to buy / sell address .." required>
+            placeholder="Insert token address to buy or sell  .." required>
         </div>
 
         <div class="col-12 text-center">
+          <button *ngIf="botFunctionality === 2" class="btn btn-warning w-50 " (click)="approve()">APPROVE</button>
           <button *ngIf="!botRunning" type="submit" class="btn btn-primary w-50 " (click)="startBot()">
-
             <ng-container [ngSwitch]="botFunctionality">
               <span *ngSwitchCase="1">START FAST BUY</span>
               <span *ngSwitchCase="2">START FAST SELL</span>
@@ -109,7 +116,6 @@
 
               <span *ngSwitchDefault>SELECT A FUNCTIONALITY FIRST</span>
             </ng-container>
-
           </button>
           <button *ngIf="botRunning" type="submit" class="btn btn-secondary w-50 " (click)="terminateBot()">STOP
             BOT</button>

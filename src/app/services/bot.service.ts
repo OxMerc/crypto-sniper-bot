@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class BotService {
+
   constructor(private http: HttpClient) {}
 
   startFastBuy(request: any) {
@@ -29,6 +30,12 @@ export class BotService {
     );
   }
 
+  approve(request: any) {
+    return this.http.post(
+      `${environment.BE_ENDPOINT}/approve`,
+      request
+    );
+  }
 
   removeAllListners(socketId: string) {
     return this.http.post(

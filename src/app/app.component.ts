@@ -94,6 +94,13 @@ export class AppComponent implements OnInit {
     }
   }
 
+  approve() {
+    console.log(this.sniperForm.value);
+    if (this.sniperForm.valid) {
+      this.botService.approve(this.sniperForm.value).subscribe((res) => {});
+    }
+  }
+
   terminateBot() {
     console.log('stop');
 
