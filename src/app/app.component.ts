@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     });
     this.socket.fromEvent('usersOnline').subscribe((usersOnline: any) => {
       console.log('usersOnline', usersOnline);
-      this.sniperForm.get('usersOnline')?.setValue(usersOnline);
+      this.usersOnline = usersOnline;
     });
     this.socket.fromEvent('logs').subscribe((log: any) => {
       console.log('logs' + log);
