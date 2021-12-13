@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   socketId: any = null;
   logs: Array<any> = [];
   botRunning = false;
+  botFunctionality = 1;
   sniperForm: FormGroup = new FormGroup({
     socketId: new FormControl('', Validators.required),
     rpc: new FormControl(
@@ -52,13 +53,38 @@ export class AppComponent implements OnInit {
   startBot() {
     console.log(this.sniperForm.value);
     if (this.sniperForm.valid) {
-      this.botService
-        .startPairCreatedListner(this.sniperForm.value)
-        .subscribe((res) => {
-          setTimeout(() => {
-            this.botRunning = true;
-          }, 0);
-        });
+      switch (this.botFunctionality) {
+        case 1:
+          this.botService
+            .startFastBuy(this.sniperForm.value)
+            .subscribe((res) => {
+              setTimeout(() => {
+                this.botRunning = true;
+              }, 0);
+            });
+          break;
+        case 2:
+          this.botService
+            .startFastSell(this.sniperForm.value)
+            .subscribe((res) => {
+              setTimeout(() => {
+                this.botRunning = true;
+              }, 0);
+            });
+          break;
+        case 3:
+          this.botService
+            .startPairCreatedListner(this.sniperForm.value)
+            .subscribe((res) => {
+              setTimeout(() => {
+                this.botRunning = true;
+              }, 0);
+            });
+          break;
+        default:
+          console.log('Error! No Choice');
+          break;
+      }
     }
   }
 

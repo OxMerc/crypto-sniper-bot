@@ -8,12 +8,27 @@ import { environment } from 'src/environments/environment';
 export class BotService {
   constructor(private http: HttpClient) {}
 
+  startFastBuy(request: any) {
+    return this.http.post(
+      `${environment.BE_ENDPOINT}/fast-buy`,
+      request
+    );
+  }
+
+  startFastSell(request: any) {
+    return this.http.post(
+      `${environment.BE_ENDPOINT}/fast-sell`,
+      request
+    );
+  }
+
   startPairCreatedListner(request: any) {
     return this.http.post(
       `${environment.BE_ENDPOINT}/pair-created-listner`,
       request
     );
   }
+
 
   removeAllListners(socketId: string) {
     return this.http.post(

@@ -28,6 +28,16 @@
 
     <div class="col-12 col-lg-5 card p-3">
       <div class="row" [formGroup]="sniperForm">
+
+        <div class="btn-group col-12 mb-3" role="group" aria-label="bot functionality">
+          <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 1}" (click)="botFunctionality = 1">Fast
+            Buy</button>
+          <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 2}" (click)="botFunctionality = 2">Fast
+            Sell</button>
+          <button type="button" class="btn btn-success" [ngClass]="{'active': botFunctionality === 3}"
+            (click)="botFunctionality = 3">Sniper</button>
+        </div>
+
         <div class="form-group col-12">
           <label for="privateKey">Sniper Wallet Private Key</label>
           <input type="password" autocomplete="off" class="form-control" id="privateKey" aria-describedby="privateKey"
@@ -37,20 +47,20 @@
 
         <div class="form-group col-12">
           <label for="recipient">RPC</label>
-          <input type="text" class="form-control" id="rpc" aria-describedby="rpc"
-            placeholder="Insert RPC .." formControlName="rpc" required>
-        </div> 
+          <input type="text" class="form-control" id="rpc" aria-describedby="rpc" placeholder="Insert RPC .."
+            formControlName="rpc" required>
+        </div>
 
-        <div class="form-group col-12">
+        <!--         <div class="form-group col-12">
           <label for="recipient">Recipient</label>
           <input type="text" class="form-control" id="recipient" aria-describedby="recipient"
             placeholder="Insert recipient address .." formControlName="recipient" required>
-        </div> 
+        </div>  -->
 
-        <div class="form-group col-6"> 
+        <div class="form-group col-6">
           <label for="amountToBuy">Amount To Buy ( BNB )</label>
-          <input type="text" class="form-control" formControlName="amountToBuy" id="amountToBuy" aria-describedby="amountToBuy"
-            placeholder="Insert amount to buy ( eg. 0.1 )" required>
+          <input type="text" class="form-control" formControlName="amountToBuy" id="amountToBuy"
+            aria-describedby="amountToBuy" placeholder="Insert amount to buy ( eg. 0.1 )" required>
         </div>
         <div class="form-group col-6">
           <label for="amountOutMin">Amount Out Min</label>
@@ -79,21 +89,30 @@
         <div class="form-group col-12">
           <label for="token">Token To Buy</label>
           <!-- <label for="token">Token To Sell</label> -->
-          <input type="text" class="form-control" formControlName="token" id="token"
-            aria-describedby="token" placeholder="Insert token to buy / sell address .." required>
+          <input type="text" class="form-control" formControlName="token" id="token" aria-describedby="token"
+            placeholder="Insert token to buy / sell address .." required>
         </div>
 
         <div class="col-12 text-center">
-          <button *ngIf="!botRunning" type="submit" class="btn btn-primary w-50 " (click)="startBot()">START
-            BOT</button>
+          <button *ngIf="!botRunning" type="submit" class="btn btn-primary w-50 " (click)="startBot()">
+            
+          <ng-container [ngSwitch]="botFunctionality">
+            <span *ngSwitchCase="1">START FAST BUY</span>
+            <span *ngSwitchCase="2">START FAST SELL</span>
+            <span *ngSwitchCase="3">START SNIPER</span>
+
+            <span *ngSwitchDefault>SELECT A FUNCTIONALITY FIRST</span>
+          </ng-container>
+          
+          </button>
           <button *ngIf="botRunning" type="submit" class="btn btn-secondary w-50 " (click)="terminateBot()">STOP
             BOT</button>
-        </div> 
+        </div>
       </div>
 
     </div>
 
-    <!-- Terminal -->
+    <!-- Terminal --> 
     <div class="col-12 col-lg-6 terminal">
       <div id="terminal-content" style="overflow: auto; height: 100%;">
         <pre *ngFor="let log of logs" [innerHtml]="log"></pre>
